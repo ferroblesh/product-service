@@ -1,4 +1,4 @@
-package com.ferroblesh.store.service.entity;
+package com.ferroblesh.store.product.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

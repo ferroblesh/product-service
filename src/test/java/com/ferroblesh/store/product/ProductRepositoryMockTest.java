@@ -1,8 +1,8 @@
-package com.ferroblesh.store.service;
+package com.ferroblesh.store.product;
 
-import com.ferroblesh.store.service.entity.Category;
-import com.ferroblesh.store.service.entity.Product;
-import com.ferroblesh.store.service.repository.ProductRepository;
+import com.ferroblesh.store.product.entity.Category;
+import com.ferroblesh.store.product.entity.Product;
+import com.ferroblesh.store.product.repository.ProductRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +32,6 @@ public class ProductRepositoryMockTest {
 
         List<Product> founds = productRepository.findByCategory(product.getCategory());
 
-        Assertions.assertThat(founds.size()).isEqualTo(2);
+        Assertions.assertThat(founds.size()).isEqualTo(3);
     }
 }

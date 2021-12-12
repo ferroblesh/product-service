@@ -1,4 +1,4 @@
-package com.ferroblesh.store.service;
+package com.ferroblesh.store.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
