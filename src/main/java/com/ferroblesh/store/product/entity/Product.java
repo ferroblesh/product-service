@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.Date;
 
 @Entity
@@ -20,14 +23,18 @@ public class Product {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty(message = "The field name can not be empty")
     private String name;
     private String description;
+    @Positive(message = "The field stock can not be negative")
     private Double stock;
     private Double price;
     private String status;
     @Column(name = "create_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
+    @NotNull(message = "The field category can not be null")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

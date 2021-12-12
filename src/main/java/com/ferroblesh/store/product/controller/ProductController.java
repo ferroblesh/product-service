@@ -3,12 +3,15 @@ package com.ferroblesh.store.product.controller;
 import com.ferroblesh.store.product.entity.Category;
 import com.ferroblesh.store.product.entity.Product;
 import com.ferroblesh.store.product.service.ProductService;
+import com.ferroblesh.store.product.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -45,7 +48,10 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product, BindingResult result) {
+        if(result.hasErrors()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, StringUtils.formatMessage(result));
+        }
         Product productCreated = productService.createProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(productCreated);
     }
